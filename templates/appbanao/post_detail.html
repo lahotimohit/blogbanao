@@ -1,0 +1,6 @@
+{% extends "appbanao/base.html" %} {% block content %}
+<h1>{{ post.title }}</h1>
+<p>Published On: {{ post.publish }} by {{ post.author|title}}</p>
+<br />
+<p>{{post.body|linebreaks}}</p>
+{% endblock content %}

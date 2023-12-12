@@ -1,0 +1,17 @@
+{% extends "appbanao/base.html" %} {% block content %}
+<div class="posts">
+  {% if posts %} {% for post in posts %}
+  <h3>
+    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+  </h3>
+  <p>
+    Published On: {{ post.publish }} by {{ post.author|title}} <br />
+    Category: {{ post.category}}
+  </p>
+  {{post.body|truncatewords:15|linebreaks}}
+  <br />
+  {% endfor %} {% else %}
+  <p>No posts found</p>
+  {% endif %}
+</div>
+{% endblock content %}
