@@ -24,6 +24,9 @@
           <ul class="navbar-nav">
             {% if user.is_authenticated %} {% if user.role == "Doctor"%}
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Your Appointments</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="blogs/{{user.id}}">Your Blogs</a>
             </li>
             <li class="nav-item">
@@ -34,6 +37,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url "logout" %}">Logout</a>
             </li>
+            {% if user.role == "Patient"%}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'doctors' %}">Our Doctors</a>
+            </li>
+            {% endif %}
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url "signup" %}">Signup</a>

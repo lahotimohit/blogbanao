@@ -1,0 +1,11 @@
+{% extends "appbanao/base.html" %}
+{% block content %}
+{% for doctor in doctors %}
+<p>
+ <img src="{{ doctor.profile_photo }}" width="200px" height="200px">
+{{ doctor.first_name }} {{ doctor.last_name }}
+<a href="{% url 'appointment' %} " class="btn btn-primary">Book Appointment</a><br>
+    <hr>
+    </p>
+{% endfor %}
+{% endblock %}

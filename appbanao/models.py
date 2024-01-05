@@ -8,14 +8,16 @@ user_role = (
     ('Doctor', 'Doctor'),
     )
 
+
 class CustomManager(models.Manager):    
     def get_queryset(self):
         return super().get_queryset().filter(status='published')
 
+
 # Create your models here.
 class User(AbstractUser):
     role = models.CharField(max_length=8, choices=user_role, default='Role')
-    profile_photo = models.ImageField(upload_to='images/profile_photo', blank=True, null=True, default="avatar.svg")
+    profile_photo = models.ImageField(upload_to='images/profile_photo', blank=True, null=True, default="profile_photo/avatar.svg")
     address_line1 = models.CharField(max_length=255)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
@@ -24,6 +26,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
+
 
 class Post(models.Model):
     STATUS_CHOICES = (('draft', 'Draft'), ('published', 'Published'))
@@ -42,8 +45,9 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-publish',)
+
     def __str__(self):
         return self.title
+
     def get_absolute_url(self):
         return reverse("post_detail", args=[self.publish.year, self.publish.strftime('%m'), self.publish.strftime('%d'), self.slug])
-    
